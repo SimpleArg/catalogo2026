@@ -14,21 +14,56 @@
           "nombre": "Seborrea / Picor",
           "descripcion": "Formulado para aliviar el cuero cabelludo con picazón y exceso de sebo. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
           "precio": 12000,
-          "activo": true
+          "activo": true,
+          "descuento": 0
         },
         {
           "id": 102,
           "nombre": "Pelo seco",
-          "descripcion": "Hidratación profunda para cabellos resecos y sin vida.",
+          "descripcion": "Hidratación profunda para cabellos resecos y sin vida. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
           "precio": 12000,
-          "activo": true
+          "activo": true,
+          "descuento": 0
         },
         {
           "id": 103,
           "nombre": "Pelo graso",
-          "descripcion": "Equilibra la producción de sebo para un cabello más limpio por más tiempo.",
+          "descripcion": "Equilibra la producción de sebo para un cabello más limpio por más tiempo. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
           "precio": 12000,
-          "activo": true
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 104,
+          "nombre": "Todo tipo de pelo",
+          "descripcion": "Fórmula equilibrada apta para cualquier tipo de cabello. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 105,
+          "nombre": "Stop caída",
+          "descripcion": "Refuerza el folículo capilar y reduce la caída del cabello. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 106,
+          "nombre": "Rulos",
+          "descripcion": "Define y nutre rizos sin efecto frizz. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 107,
+          "nombre": "Lacios",
+          "descripcion": "Aporta suavidad y brillo a cabellos lisos. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
         }
       ]
     },
