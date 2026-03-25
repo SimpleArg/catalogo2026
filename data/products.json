@@ -1,0 +1,368 @@
+{
+  "productos": [
+
+    {
+      "id": 1,
+      "nombre": "Shampoo sólido",
+      "descripcion_base": "Shampoo sólido artesanal elaborado con ingredientes naturales seleccionados.",
+      "imagen": "shampoo-solido.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "familia",
+      "activo": true,
+      "descuento": 0,
+      "nota_cliente": "¿Tenés un shampoo específico en mente? Contanos en el campo de observaciones al momento de comprar.",
+      "variantes": [
+        {
+          "id": 101,
+          "nombre": "Seborrea / Picor",
+          "descripcion": "Formulado para aliviar el cuero cabelludo con picazón y exceso de sebo. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 102,
+          "nombre": "Pelo seco",
+          "descripcion": "Hidratación profunda para cabellos resecos y sin vida. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 103,
+          "nombre": "Pelo graso",
+          "descripcion": "Equilibra la producción de sebo para un cabello más limpio por más tiempo. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 104,
+          "nombre": "Todo tipo de pelo",
+          "descripcion": "Fórmula equilibrada apta para cualquier tipo de cabello. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 105,
+          "nombre": "Stop caída",
+          "descripcion": "Refuerza el folículo capilar y reduce la caída del cabello. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 106,
+          "nombre": "Rulos",
+          "descripcion": "Define y nutre rizos sin efecto frizz. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 107,
+          "nombre": "Lacios",
+          "descripcion": "Aporta suavidad y brillo a cabellos lisos. Ingredientes: aceite de coco, manteca de karité, arcilla, romero, ortiga, aceite de ricino, biopéptidos, cafeína, proteína de trigo, keratina.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "nombre": "Tónico capilar 60 cc",
+      "descripcion_base": "Tónico capilar de uso diario para estimular y fortalecer el cuero cabelludo.",
+      "imagen": "tonico-capilar.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "familia",
+      "activo": true,
+      "descuento": 0,
+      "nota_cliente": null,
+      "variantes": [
+        {
+          "id": 201,
+          "nombre": "Fortalecedor",
+          "descripcion": "Estimula el crecimiento y refuerza la fibra capilar. Ingredientes: extracto de romero, biotina, mentol, zinc, cafeína.",
+          "precio": 7500,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 202,
+          "nombre": "Dermatitis / Seborrea",
+          "descripcion": "Calma y regula el cuero cabelludo irritado con tendencia seborreica. Ingredientes: extracto de romero, biotina, mentol, zinc, cafeína.",
+          "precio": 7500,
+          "activo": true,
+          "descuento": 0
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "nombre": "Acondicionador sólido",
+      "descripcion_base": "Acondicionador sólido de larga duración, sin plástico y con ingredientes naturales.",
+      "imagen": "acondicionador-solido.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "familia",
+      "activo": true,
+      "descuento": 0,
+      "nota_cliente": null,
+      "variantes": [
+        {
+          "id": 301,
+          "nombre": "Todo tipo de pelo",
+          "descripcion": "Suavidad y nutrición para todo tipo de cabello. Ingredientes: manteca de cacao, aceite de argán, proteína de trigo, keratina vegetal.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 302,
+          "nombre": "Stop caída",
+          "descripcion": "Fortalece desde la raíz y disminuye la caída. Ingredientes: manteca de cacao, aceite de argán, proteína de trigo, keratina vegetal.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 303,
+          "nombre": "Rulos",
+          "descripcion": "Define y humecta rizos de forma natural. Ingredientes: manteca de cacao, aceite de argán, proteína de trigo, keratina vegetal.",
+          "precio": 12000,
+          "activo": true,
+          "descuento": 0
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "nombre": "Acondicionador en crema 200 cc",
+      "descripcion_base": "Acondicionador en crema de uso post-lavado para una hidratación profunda.",
+      "imagen": "acondicionador-crema.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "familia",
+      "activo": true,
+      "descuento": 0,
+      "nota_cliente": null,
+      "variantes": [
+        {
+          "id": 401,
+          "nombre": "Todo tipo de pelo",
+          "descripcion": "Hidratación equilibrada para cualquier tipo de cabello. Ingredientes: aceite de coco, manteca de karité, vitamina E, pantenol.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 402,
+          "nombre": "Stop caída",
+          "descripcion": "Nutrición específica para cabellos con caída activa. Ingredientes: aceite de coco, manteca de karité, vitamina E, pantenol.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 403,
+          "nombre": "Pelo seco",
+          "descripcion": "Nutrición intensa para cabellos secos y dañados. Ingredientes: aceite de coco, manteca de karité, vitamina E, pantenol.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 404,
+          "nombre": "Pelo graso",
+          "descripcion": "Hidratación sin pesadez para cabellos con tendencia grasa. Ingredientes: aceite de coco, manteca de karité, vitamina E, pantenol.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "nombre": "Acondicionador para peinar sin enjuague 125 cc",
+      "descripcion": "Facilita el peinado, reduce el frizz y aporta brillo sin necesidad de enjuague. Ingredientes: aceite de argán, proteína de trigo, vitamina B5, silicona vegetal.",
+      "imagen": "acondicionador-peinar.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "simple",
+      "precio": 8000,
+      "activo": true,
+      "descuento": 0
+    },
+
+    {
+      "id": 8,
+      "nombre": "Protector térmico capilar 60 cc",
+      "descripcion": "Protege el cabello del calor de planchas y secadores. Ingredientes: silicona vegetal, keratina hidrolizada, vitamina E, aceite de jojoba.",
+      "imagen": "protector-termico.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "simple",
+      "precio": 9000,
+      "activo": true,
+      "descuento": 0
+    },
+
+    {
+      "id": 9,
+      "nombre": "Óleo capilar para puntas abiertas 10 cc",
+      "descripcion": "Sélla y nutre las puntas abiertas devolviéndoles suavidad y brillo. Ingredientes: aceite de argán, aceite de ricino, vitamina E, aceite de jojoba.",
+      "imagen": "oleo-capilar.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "simple",
+      "precio": 5000,
+      "activo": true,
+      "descuento": 0
+    },
+
+    {
+      "id": 10,
+      "nombre": "Mascarilla capilar 200 cc",
+      "descripcion": "Tratamiento intensivo semanal para restaurar y nutrir el cabello. Ingredientes: manteca de karité, aceite de coco, keratina vegetal, pantenol.",
+      "imagen": "mascarilla-capilar.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "simple",
+      "precio": 17000,
+      "activo": true,
+      "descuento": 0
+    },
+
+    {
+      "id": 11,
+      "nombre": "Crema en barra para afeitar 65 g",
+      "descripcion": "Crema de afeitar sólida que suaviza y protege la piel durante el afeitado. Ingredientes: manteca de karité, aceite de coco, arcilla kaolín, aloe vera.",
+      "imagen": "crema-afeitar-barra.jpg",
+      "categoria": "cuerpo",
+      "tipo_producto": "simple",
+      "precio": 7000,
+      "activo": true,
+      "descuento": 0
+    },
+
+    {
+      "id": 12,
+      "nombre": "Gel capilar 100 g",
+      "descripcion": "Fijación natural con ingredientes orgánicos, sin alcohol ni parabenos. Ingredientes: lino orgánico, glicerina vegetal, aloe vera, aceite esencial de romero.",
+      "imagen": "gel-capilar.jpg",
+      "categoria": "cabello",
+      "tipo_producto": "simple",
+      "precio": 5000,
+      "activo": true,
+      "descuento": 0
+    },
+
+    {
+      "id": 13,
+      "nombre": "Crema facial 50 cc",
+      "descripcion_base": "Crema facial artesanal con activos naturales, formulada para cada tipo de piel.",
+      "imagen": "cremas-faciales.jpg",
+      "categoria": "rostro",
+      "tipo_producto": "familia",
+      "activo": true,
+      "descuento": 0,
+      "nota_cliente": null,
+      "variantes": [
+        {
+          "id": 1301,
+          "nombre": "Piel mixta",
+          "descripcion": "Regula zonas grasas sin resecar las zonas secas. Ingredientes: manteca de karité, aceite de jojoba, aloe vera, vitamina E, aceites esenciales.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1302,
+          "nombre": "Piel seca",
+          "descripcion": "Hidratación intensa y duradera para pieles secas y sensibles. Ingredientes: manteca de karité, aceite de jojoba, aloe vera, vitamina E, aceites esenciales.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1303,
+          "nombre": "Piel grasa",
+          "descripcion": "Hidratación liviana que controla el exceso de sebo. Ingredientes: manteca de karité, aceite de jojoba, aloe vera, vitamina E, aceites esenciales.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1304,
+          "nombre": "Teens",
+          "descripcion": "Especialmente formulada para pieles jóvenes con tendencia acneica. Ingredientes: manteca de karité, aceite de jojoba, aloe vera, vitamina E, aceites esenciales.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1305,
+          "nombre": "Unificadora de tono",
+          "descripcion": "Pareja y unifica el tono de la piel con uso continuado. Ingredientes: manteca de karité, aceite de jojoba, aloe vera, vitamina E, aceites esenciales.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1306,
+          "nombre": "Gel vitamina C",
+          "descripcion": "Ilumina y protege la piel del daño oxidativo. Ingredientes: manteca de karité, aceite de jojoba, aloe vera, vitamina E, aceites esenciales, vitamina C.",
+          "precio": 8000,
+          "activo": true,
+          "descuento": 0
+        }
+      ]
+    },
+
+    {
+      "id": 14,
+      "nombre": "Crema facial Premium 50 cc",
+      "descripcion_base": "Crema facial con activos de alta concentración para resultados visibles.",
+      "imagen": "cremas-faciales-premium.jpg",
+      "categoria": "rostro",
+      "tipo_producto": "familia",
+      "activo": true,
+      "descuento": 0,
+      "nota_cliente": null,
+      "variantes": [
+        {
+          "id": 1401,
+          "nombre": "Ácido hialurónico hidratante — Colágeno y elastina",
+          "descripcion": "Rellena arrugas finas y restaura la elasticidad cutánea. Ingredientes: ácido hialurónico, colágeno, elastina.",
+          "precio": 17000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1402,
+          "nombre": "Provitamina B5",
+          "descripcion": "Regenera y calma pieles irritadas o dañadas. Ingredientes: provitamina B5.",
+          "precio": 17000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1403,
+          "nombre": "Niacinamida y ginkgo biloba — Pieles sensibles y con rosácea",
+          "descripcion": "Reduce el enrojecimiento y fortalece la barrera cutánea. Ingredientes: niacinamida, ginkgo biloba.",
+          "precio": 17000,
+          "activo": true,
+          "descuento": 0
+        },
+        {
+          "id": 1404,
+          "nombre": "Ácido salicílico y té verde",
+          "descripcion": "Regula el sebo, minimiza poros y combate imperfecciones. Ingredientes: ácido salicílico, té verde.",
+          "precio": 17000,
+          "activo": true,
+          "descuento": 0
+        }
+      ]
+    },
+
+  ],
