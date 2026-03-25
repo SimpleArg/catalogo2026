@@ -6,17 +6,22 @@
     <title>Simple - Cosméticos Naturales</title>
     <meta name="description" content="Productos cosméticos naturales en Entre Ríos. Envíos a Colonia Avellaneda, Paraná y zonas aledañas.">
     
+    <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ========== HEADER ========== -->
+    <!-- ========== HEADER / NAVEGACIÓN ========== -->
     <header class="header">
         <div class="container header-container">
+            <!-- Logo -->
             <a href="#" class="logo">SIMPLE</a>
             
+            <!-- Menú de navegación -->
             <nav class="navbar">
                 <ul class="nav-links">
                     <li><a href="#inicio" class="nav-link">Inicio</a></li>
@@ -26,39 +31,44 @@
                 </ul>
             </nav>
 
+            <!-- Carrito e ícono menú -->
             <div class="header-icons">
-                <div class="cart-icon-container" id="cart-btn">
+                <!-- Botón del carrito con contador -->
+                <button class="cart-icon-container" id="cart-btn" aria-label="Abrir carrito">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cart-count">0</span>
-                </div>
-                <div class="menu-btn" id="menu-btn">
+                </button>
+                <!-- Botón menú mobile -->
+                <button class="menu-btn" id="menu-btn" aria-label="Menú">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
             </div>
         </div>
 
-        <!-- Dropdown del Carrito -->
-        <div class="cart-dropdown" id="cart-dropdown">
+        <!-- Carrito desplegable (se muestra/oculta con JavaScript) -->
+        <div class="cart-dropdown" id="cart-dropdown" style="display: none;">
             <div class="cart-header">
                 <h3>Tu Carrito</h3>
-                <button id="close-cart" class="close-cart-btn"><i class="fas fa-times"></i></button>
+                <button class="close-cart-btn" id="close-cart" aria-label="Cerrar carrito">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
+            <!-- Aquí se insertan los items del carrito dinámicamente -->
             <div class="cart-items" id="cart-items">
                 <p class="empty-cart-msg">Tu carrito está vacío</p>
             </div>
+            <!-- Resumen y botón de compra -->
             <div class="cart-footer">
-                <!-- Aquí aparece el resumen de descuentos por promo si aplica -->
-                <div id="cart-promo-summary" class="cart-promo-summary" style="display:none;"></div>
                 <div class="cart-total">
                     <span>Total:</span>
                     <span id="cart-total-price">$0</span>
                 </div>
-                <button id="checkout-btn" class="btn-primary full-width">Finalizar Compra</button>
+                <button class="btn-primary full-width" id="checkout-btn">Finalizar Compra</button>
             </div>
         </div>
     </header>
 
-    <!-- ========== HERO ========== -->
+    <!-- ========== SECCIÓN HERO ========== -->
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>Cosmética Natural</h1>
@@ -67,12 +77,12 @@
         </div>
     </section>
 
-    <!-- ========== PRODUCTOS ========== -->
+    <!-- ========== SECCIÓN PRODUCTOS ========== -->
     <section id="productos" class="products-section">
         <div class="container">
             <h2 class="section-title">Nuestros Productos</h2>
             
-            <!-- Guía de compra -->
+            <!-- Guía de compra (pasos simples) -->
             <div class="shopping-guide">
                 <div class="guide-steps">
                     <div class="step">
@@ -91,38 +101,29 @@
                 <p class="guide-note">✨ ¡Es rápido, seguro y sin registros!</p>
             </div>
 
-            <!-- ========== SECCIÓN DE OFERTAS ==========
-                 Visible solo cuando hay al menos 1 promo activa.
-                 Se construye dinámicamente desde JS con los datos de products.json → "promociones".
-                 Máximo 3 tarjetas de oferta.
-            -->
-            <div class="offers-section" id="offers-section" style="display:none;">
-                <h3 class="offers-title">🏷️ Ofertas Especiales</h3>
-                <div class="offers-container" id="offers-container"></div>
-            </div>
-
-            <!-- Filtros por categoría -->
+            <!-- Filtros por categoría (botones) -->
             <div class="categories-filter">
                 <button class="filter-btn active" data-category="todos">Todos</button>
                 <button class="filter-btn" data-category="cabello">Cabello</button>
                 <button class="filter-btn" data-category="rostro">Rostro</button>
                 <button class="filter-btn" data-category="cuerpo">Cuerpo</button>
-                <button class="filter-btn" data-category="maquillaje">Maquillaje</button>
-                <button class="filter-btn" data-category="otros">Otros</button>
             </div>
 
-            <!-- Contenedor de productos (se llena con JS) -->
-            <div class="products-container" id="products-container"></div>
+            <!-- Grid de productos (se llena dinámicamente con JavaScript) -->
+            <div class="products-container" id="products-container">
+                <!-- Los productos se cargan aquí desde JavaScript -->
+            </div>
         </div>
     </section>
 
-    <!-- ========== NOSOTROS ========== -->
+    <!-- ========== SECCIÓN NOSOTROS ========== -->
     <section id="nosotros" class="about-section">
         <div class="about-container">
             <div class="about-content">
                 <h2>Simple Cosméticos Naturales</h2>
                 <p>Somos una empresa familiar comprometida con el bienestar y la salud a través de la cosmética natural.</p>
                 
+                <!-- Características con iconos -->
                 <div class="about-features">
                     <div class="feature">
                         <i class="fas fa-leaf"></i>
@@ -147,12 +148,14 @@
     </section>
 
     <!-- ========== MODAL CHECKOUT ========== -->
-    <div id="checkout-modal" class="modal">
+    <!-- Modal para completar datos y enviar pedido por WhatsApp -->
+    <div id="checkout-modal" class="modal" style="display: none;">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <button class="close-modal" id="close-checkout-modal" aria-label="Cerrar">&times;</button>
             <h2>Finalizar Pedido</h2>
             <p>Completa tus datos para enviar el pedido por WhatsApp.</p>
             
+            <!-- Formulario de checkout -->
             <form id="checkout-form">
                 <div class="form-group">
                     <label for="customer-name">Nombre completo *</label>
@@ -164,11 +167,12 @@
                 </div>
                 <div class="form-group">
                     <label for="customer-comments">Comentarios (Opcional)</label>
-                    <textarea id="customer-comments" placeholder="Ej: El timbre no funciona, dejar en portería..."></textarea>
+                    <textarea id="customer-comments" rows="4" placeholder="Ej: El timbre no funciona, dejar en portería..."></textarea>
                 </div>
                 
+                <!-- Botones de acción -->
                 <div class="form-actions">
-                    <button type="button" class="btn-secondary close-modal-btn">Cancelar</button>
+                    <button type="button" class="btn-secondary" id="cancel-checkout">Cancelar</button>
                     <button type="submit" class="btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> Enviar Pedido
                     </button>
@@ -178,33 +182,38 @@
     </div>
 
     <!-- ========== NOTIFICACIÓN TOAST ========== -->
-    <div id="notification" class="notification">Producto agregado</div>
+    <!-- Mensaje emergente que aparece cuando se agrega algo al carrito -->
+    <div id="notification" class="notification" style="display: none;">Producto agregado</div>
 
-    <!-- ========== FOOTER ========== -->
-    <footer id="contacto">
+    <!-- ========== FOOTER / CONTACTO ========== -->
+    <footer id="contacto" class="footer">
         <div class="footer-container">
+            <!-- Logo y nombre de la empresa -->
             <div class="footer-logo">
                 <h3>Simple</h3>
                 <p>COSMÉTICA NATURAL</p>
             </div>
             
+            <!-- Columnas de información -->
             <div class="footer-content">
+                <!-- Contacto -->
                 <div class="footer-column">
                     <h4>Contacto</h4>
                     <ul class="contact-list">
                         <li>
-                            <a href="https://wa.me/5493434747844" target="_blank">
+                            <a href="https://wa.me/5493434747844" target="_blank" rel="noopener">
                                 <i class="fab fa-whatsapp"></i> 343 474-7844
                             </a>
                         </li>
                         <li>
-                            <a href="https://instagram.com/simplep.naturales" target="_blank">
+                            <a href="https://instagram.com/simplep.naturales" target="_blank" rel="noopener">
                                 <i class="fab fa-instagram"></i> @simplep.naturales
                             </a>
                         </li>
                     </ul>
                 </div>
                 
+                <!-- Zonas de entrega -->
                 <div class="footer-column">
                     <h4>Zonas de Entrega</h4>
                     <ul class="hours-list">
@@ -212,10 +221,10 @@
                         <li>Paraná</li>
                         <li>San Benito</li>
                         <li>Sauce Montrúl</li>
-                        <li>María Grande</li>
                     </ul>
                 </div>
                 
+                <!-- Horarios -->
                 <div class="footer-column">
                     <h4>Horarios de atención</h4>
                     <ul class="quick-links">
@@ -225,68 +234,14 @@
                 </div>
             </div>
             
+            <!-- Copyright -->
             <div class="footer-bottom">
                 <p>&copy; 2026 Simple - Cosméticos Naturales.</p>
-            </div>
-            
-            <div style="text-align: center; padding: 10px;">
-                <button id="admin-access-btn" style="background:none; border:none; color:var(--rosa-borde); cursor:pointer; font-size:0.8rem;">
-                    🔐 Admin
-                </button>
             </div>
         </div>
     </footer>
 
-    <!-- ========== MODAL LOGIN ADMIN ========== -->
-    <div id="admin-login-modal" class="modal">
-        <div class="modal-content" style="max-width: 400px;">
-            <span class="close-modal" id="close-admin-login">&times;</span>
-            <h2 style="color: var(--rosa-principal); text-align: center;">👤 Acceso Admin</h2>
-            <form id="admin-login-form" style="margin-top: 20px;">
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" id="admin-password" required placeholder="••••••••">
-                </div>
-                <button type="submit" class="btn-primary full-width">Ingresar</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ========== PANEL DE ADMINISTRACIÓN ==========
-         Estructura de pestañas:
-         · Tab "Productos" → crear/editar/eliminar familias y sus variantes
-         · Tab "Ofertas"   → crear/editar/activar/desactivar/eliminar promociones
-         El panel se posiciona sobre el contenido (fixed, top:70px) y cubre la vista.
-    -->
-    <div id="admin-panel" class="admin-panel" style="display: none;">
-        <div class="admin-header">
-            <h3>⚙️ Panel de Administración</h3>
-            <button id="logout-admin-btn" class="btn-secondary">Salir</button>
-        </div>
-
-        <!-- Pestañas -->
-        <div class="admin-tabs">
-            <button class="admin-tab active" data-tab="productos">📦 Productos</button>
-            <button class="admin-tab" data-tab="ofertas">🏷️ Ofertas</button>
-        </div>
-
-        <!-- Contenido: Productos -->
-        <div class="admin-tab-content active" id="tab-productos">
-            <div class="admin-tab-actions">
-                <button id="add-product-btn" class="btn-primary">+ Nueva Familia de Productos</button>
-            </div>
-            <div id="admin-products-list" class="admin-products-list"></div>
-        </div>
-
-        <!-- Contenido: Ofertas -->
-        <div class="admin-tab-content" id="tab-ofertas">
-            <div class="admin-tab-actions">
-                <button id="add-promo-btn" class="btn-primary">+ Nueva Oferta</button>
-            </div>
-            <div id="admin-promos-list" class="admin-promos-list"></div>
-        </div>
-    </div>
-
-    <script src="js/script.js"></script>
+    <!-- ========== SCRIPT PRINCIPAL ========== -->
+    <script src="script.js"></script>
 </body>
 </html>
