@@ -6,242 +6,275 @@
     <title>Simple - Cosméticos Naturales</title>
     <meta name="description" content="Productos cosméticos naturales en Entre Ríos. Envíos a Colonia Avellaneda, Paraná y zonas aledañas.">
     
-    <!-- Iconos de Font Awesome -->
+    <!-- CDN de iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- CSS propio -->
+    <!-- Fuente de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilos propios -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ========== HEADER / NAVEGACIÓN ========== -->
-    <header class="header">
-        <div class="container header-container">
-            <!-- Logo -->
-            <a href="#" class="logo">SIMPLE</a>
-            
-            <!-- Menú de navegación -->
-            <nav class="navbar">
-                <ul class="nav-links">
-                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                    <li><a href="#productos" class="nav-link">Productos</a></li>
-                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
+<!-- ==================== HEADER (NAVEGACIÓN) ==================== -->
+<header class="header">
+    <div class="container header-container">
+        <!-- Logo de la marca -->
+        <a href="#inicio" class="logo">SIMPLE</a>
+        
+        <!-- Menú de navegación -->
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#productos" class="nav-link">Productos</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
 
-            <!-- Carrito e ícono menú -->
-            <div class="header-icons">
-                <!-- Botón del carrito con contador -->
-                <button class="cart-icon-container" id="cart-btn" aria-label="Abrir carrito">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count" id="cart-count">0</span>
-                </button>
-                <!-- Botón menú mobile -->
-                <button class="menu-btn" id="menu-btn" aria-label="Menú">
-                    <i class="fas fa-bars"></i>
-                </button>
+        <!-- Iconos del header: carrito y menú móvil -->
+        <div class="header-icons">
+            <!-- Botón del carrito -->
+            <div class="cart-icon-container" id="cart-btn" title="Abrir carrito">
+                <i class="fas fa-shopping-bag"></i>
+                <!-- Contador de items en el carrito -->
+                <span class="cart-count" id="cart-count">0</span>
             </div>
-        </div>
-
-        <!-- Carrito desplegable (se muestra/oculta con JavaScript) -->
-        <div class="cart-dropdown" id="cart-dropdown" style="display: none;">
-            <div class="cart-header">
-                <h3>Tu Carrito</h3>
-                <button class="close-cart-btn" id="close-cart" aria-label="Cerrar carrito">
-                    <i class="fas fa-times"></i>
-                </button>
+            <!-- Botón de menú para móviles -->
+            <div class="menu-btn" id="menu-btn" title="Menú móvil">
+                <i class="fas fa-bars"></i>
             </div>
-            <!-- Aquí se insertan los items del carrito dinámicamente -->
-            <div class="cart-items" id="cart-items">
-                <p class="empty-cart-msg">Tu carrito está vacío</p>
-            </div>
-            <!-- Resumen y botón de compra -->
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="cart-total-price">$0</span>
-                </div>
-                <button class="btn-primary full-width" id="checkout-btn">Finalizar Compra</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- ========== SECCIÓN HERO ========== -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Cosmética Natural</h1>
-            <p>Productos 100% naturales para el cuidado de tu cuerpo y el medio ambiente.</p>
-            <a href="#productos" class="btn-primary">Ver Productos</a>
-        </div>
-    </section>
-
-    <!-- ========== SECCIÓN PRODUCTOS ========== -->
-    <section id="productos" class="products-section">
-        <div class="container">
-            <h2 class="section-title">Nuestros Productos</h2>
-            
-            <!-- Guía de compra (pasos simples) -->
-            <div class="shopping-guide">
-                <div class="guide-steps">
-                    <div class="step">
-                        <span class="step-number">1</span>
-                        <p>Elige tus productos favoritos</p>
-                    </div>
-                    <div class="step">
-                        <span class="step-number">2</span>
-                        <p>Agrégalos al carrito 🛍️</p>
-                    </div>
-                    <div class="step">
-                        <span class="step-number">3</span>
-                        <p>Finaliza y envía tu pedido por WhatsApp 💬</p>
-                    </div>
-                </div>
-                <p class="guide-note">✨ ¡Es rápido, seguro y sin registros!</p>
-            </div>
-
-            <!-- Filtros por categoría (botones) -->
-            <div class="categories-filter">
-                <button class="filter-btn active" data-category="todos">Todos</button>
-                <button class="filter-btn" data-category="cabello">Cabello</button>
-                <button class="filter-btn" data-category="rostro">Rostro</button>
-                <button class="filter-btn" data-category="cuerpo">Cuerpo</button>
-            </div>
-
-            <!-- Grid de productos (se llena dinámicamente con JavaScript) -->
-            <div class="products-container" id="products-container">
-                <!-- Los productos se cargan aquí desde JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== SECCIÓN NOSOTROS ========== -->
-    <section id="nosotros" class="about-section">
-        <div class="about-container">
-            <div class="about-content">
-                <h2>Simple Cosméticos Naturales</h2>
-                <p>Somos una empresa familiar comprometida con el bienestar y la salud a través de la cosmética natural.</p>
-                
-                <!-- Características con iconos -->
-                <div class="about-features">
-                    <div class="feature">
-                        <i class="fas fa-leaf"></i>
-                        <h3>100% Natural</h3>
-                        <p>Ingredientes de origen natural, sin químicos dañinos.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-heart"></i>
-                        <h3>Cruelty Free</h3>
-                        <p>Ningún producto es testeado en animales. Respetamos toda forma de vida.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-recycle"></i>
-                        <h3>Ecológico</h3>
-                        <p>Envases reciclables y procesos sostenibles con el medio ambiente.</p>
-                    </div>
-                </div>
-                
-                <p class="about-mission">Nuestra misión es ofrecer productos de cuidado personal que cuiden de ti y del planeta, manteniendo precios accesibles y calidad excepcional.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== MODAL CHECKOUT ========== -->
-    <!-- Modal para completar datos y enviar pedido por WhatsApp -->
-    <div id="checkout-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-modal" id="close-checkout-modal" aria-label="Cerrar">&times;</button>
-            <h2>Finalizar Pedido</h2>
-            <p>Completa tus datos para enviar el pedido por WhatsApp.</p>
-            
-            <!-- Formulario de checkout -->
-            <form id="checkout-form">
-                <div class="form-group">
-                    <label for="customer-name">Nombre completo *</label>
-                    <input type="text" id="customer-name" required placeholder="Ej: Eliana Varisco">
-                </div>
-                <div class="form-group">
-                    <label for="customer-address">Dirección de entrega *</label>
-                    <input type="text" id="customer-address" required placeholder="Ej: Calle 123, Colonia Avellaneda">
-                </div>
-                <div class="form-group">
-                    <label for="customer-comments">Comentarios (Opcional)</label>
-                    <textarea id="customer-comments" rows="4" placeholder="Ej: El timbre no funciona, dejar en portería..."></textarea>
-                </div>
-                
-                <!-- Botones de acción -->
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" id="cancel-checkout">Cancelar</button>
-                    <button type="submit" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> Enviar Pedido
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 
-    <!-- ========== NOTIFICACIÓN TOAST ========== -->
-    <!-- Mensaje emergente que aparece cuando se agrega algo al carrito -->
-    <div id="notification" class="notification" style="display: none;">Producto agregado</div>
+    <!-- ========== PANEL DEL CARRITO (Dropdown) ========== -->
+    <div class="cart-dropdown" id="cart-dropdown">
+        <!-- Encabezado del carrito -->
+        <div class="cart-header">
+            <h3>🛍️ Tu Carrito</h3>
+            <button id="close-cart" class="close-cart-btn" title="Cerrar carrito">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
 
-    <!-- ========== FOOTER / CONTACTO ========== -->
-    <footer id="contacto" class="footer">
-        <div class="footer-container">
-            <!-- Logo y nombre de la empresa -->
-            <div class="footer-logo">
-                <h3>Simple</h3>
-                <p>COSMÉTICA NATURAL</p>
-            </div>
+        <!-- Lista de items en el carrito (se llena con JavaScript) -->
+        <div class="cart-items" id="cart-items">
+            <p class="empty-cart-msg">Tu carrito está vacío</p>
+        </div>
+
+        <!-- Pie del carrito: total y botón de compra -->
+        <div class="cart-footer">
+            <!-- Resumen de descuentos por promociones (si hay) -->
+            <div id="cart-promo-summary" class="cart-promo-summary" style="display:none;"></div>
             
-            <!-- Columnas de información -->
-            <div class="footer-content">
-                <!-- Contacto -->
-                <div class="footer-column">
-                    <h4>Contacto</h4>
-                    <ul class="contact-list">
-                        <li>
-                            <a href="https://wa.me/5493434747844" target="_blank" rel="noopener">
-                                <i class="fab fa-whatsapp"></i> 343 474-7844
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://instagram.com/simplep.naturales" target="_blank" rel="noopener">
-                                <i class="fab fa-instagram"></i> @simplep.naturales
-                            </a>
-                        </li>
-                    </ul>
+            <!-- Total del carrito -->
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0</span>
+            </div>
+
+            <!-- Botón para finalizar la compra -->
+            <button id="checkout-btn" class="btn-primary full-width">
+                Finalizar Compra
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== SECCIÓN HERO ==================== -->
+<section id="inicio" class="hero">
+    <div class="hero-content">
+        <h1>Cosmética Natural</h1>
+        <p>Productos 100% naturales para el cuidado de tu cuerpo y el medio ambiente.</p>
+        <a href="#productos" class="btn-primary">Ver Productos</a>
+    </div>
+</section>
+
+<!-- ==================== SECCIÓN PRODUCTOS ==================== -->
+<section id="productos" class="products-section">
+    <div class="container">
+        <!-- Título de la sección -->
+        <h2 class="section-title">Nuestros Productos</h2>
+        
+        <!-- Guía de compra en 3 pasos -->
+        <div class="shopping-guide">
+            <div class="guide-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <p>Elige tus productos favoritos</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <p>Agrégalos al carrito 🛍️</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <p>Finaliza y envía por WhatsApp 💬</p>
+                </div>
+            </div>
+            <p class="guide-note">✨ ¡Es rápido, seguro y sin registros!</p>
+        </div>
+
+        <!-- Sección de ofertas especiales (solo visible si hay promos activas) -->
+        <div class="offers-section" id="offers-section" style="display:none;">
+            <h3 class="offers-title">🏷️ Ofertas Especiales</h3>
+            <div class="offers-container" id="offers-container"></div>
+        </div>
+
+        <!-- Filtros por categoría de productos -->
+        <div class="categories-filter">
+            <button class="filter-btn active" data-category="todos">Todos</button>
+            <button class="filter-btn" data-category="cabello">Cabello</button>
+            <button class="filter-btn" data-category="rostro">Rostro</button>
+            <button class="filter-btn" data-category="cuerpo">Cuerpo</button>
+            <button class="filter-btn" data-category="maquillaje">Maquillaje</button>
+            <button class="filter-btn" data-category="otros">Otros</button>
+        </div>
+
+        <!-- Grid de productos (se llena dinámicamente con JavaScript) -->
+        <div class="products-container" id="products-container">
+            <!-- Los productos se agregan aquí con JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SECCIÓN NOSOTROS ==================== -->
+<section id="nosotros" class="about-section">
+    <div class="about-container">
+        <div class="about-content">
+            <h2>Simple Cosméticos Naturales</h2>
+            <p>Somos una empresa familiar comprometida con el bienestar y la salud a través de la cosmética natural.</p>
+            
+            <!-- Características de la marca -->
+            <div class="about-features">
+                <!-- Característica 1: Natural -->
+                <div class="feature">
+                    <i class="fas fa-leaf"></i>
+                    <h3>100% Natural</h3>
+                    <p>Ingredientes de origen natural, sin químicos dañinos.</p>
                 </div>
                 
-                <!-- Zonas de entrega -->
-                <div class="footer-column">
-                    <h4>Zonas de Entrega</h4>
-                    <ul class="hours-list">
-                        <li>Colonia Avellaneda</li>
-                        <li>Paraná</li>
-                        <li>San Benito</li>
-                        <li>Sauce Montrúl</li>
-                    </ul>
+                <!-- Característica 2: Cruelty Free -->
+                <div class="feature">
+                    <i class="fas fa-heart"></i>
+                    <h3>Cruelty Free</h3>
+                    <p>Ningún producto es testeado en animales. Respetamos toda forma de vida.</p>
                 </div>
                 
-                <!-- Horarios -->
-                <div class="footer-column">
-                    <h4>Horarios de atención</h4>
-                    <ul class="quick-links">
-                        <li>Lun a Vie: 9-18hs</li>
-                        <li>Sábados: 10-14hs</li>
-                    </ul>
+                <!-- Característica 3: Ecológico -->
+                <div class="feature">
+                    <i class="fas fa-recycle"></i>
+                    <h3>Ecológico</h3>
+                    <p>Envases reciclables y procesos sostenibles con el medio ambiente.</p>
                 </div>
             </div>
             
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2026 Simple - Cosméticos Naturales.</p>
+            <p class="about-mission">Nuestra misión es ofrecer productos de cuidado personal que cuiden de ti y del planeta, manteniendo precios accesibles y calidad excepcional.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== MODAL: FORMULARIO DE CHECKOUT ==================== -->
+<div id="checkout-modal" class="modal">
+    <div class="modal-content">
+        <!-- Botón para cerrar el modal -->
+        <span class="close-modal">&times;</span>
+        
+        <h2>Finalizar Pedido</h2>
+        <p>Completa tus datos para enviar el pedido por WhatsApp.</p>
+        
+        <!-- Formulario de checkout -->
+        <form id="checkout-form">
+            <!-- Campo: Nombre completo -->
+            <div class="form-group">
+                <label for="customer-name">Nombre completo *</label>
+                <input type="text" id="customer-name" required placeholder="Ej: Eliana Varisco">
+            </div>
+
+            <!-- Campo: Dirección de entrega -->
+            <div class="form-group">
+                <label for="customer-address">Dirección de entrega *</label>
+                <input type="text" id="customer-address" required placeholder="Ej: Calle 123, Colonia Avellaneda">
+            </div>
+
+            <!-- Campo: Comentarios opcionales -->
+            <div class="form-group">
+                <label for="customer-comments">Comentarios (Opcional)</label>
+                <textarea id="customer-comments" placeholder="Ej: El timbre no funciona, dejar en portería..."></textarea>
+            </div>
+            
+            <!-- Botones de acción -->
+            <div class="form-actions">
+                <button type="button" class="btn-secondary close-modal-btn">Cancelar</button>
+                <button type="submit" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Enviar Pedido
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== NOTIFICACIÓN TOAST ==================== -->
+<!-- Notificación flotante que aparece cuando se agrega algo al carrito -->
+<div id="notification" class="notification">Producto agregado</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer id="contacto" class="footer">
+    <div class="footer-container">
+        <!-- Logo y branding del footer -->
+        <div class="footer-logo">
+            <h3>Simple</h3>
+            <p>COSMÉTICA NATURAL</p>
+        </div>
+        
+        <!-- Contenido del footer en 3 columnas -->
+        <div class="footer-content">
+            <!-- Columna 1: Datos de contacto -->
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <ul class="contact-list">
+                    <li>
+                        <a href="https://wa.me/5493434747844" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> 343 474-7844
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://instagram.com/simplep.naturales" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i> @simplep.naturales
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Columna 2: Zonas de entrega -->
+            <div class="footer-column">
+                <h4>Zonas de Entrega</h4>
+                <ul class="hours-list">
+                    <li>Colonia Avellaneda</li>
+                    <li>Paraná</li>
+                    <li>San Benito</li>
+                    <li>Sauce Montrúl</li>
+                    <li>María Grande</li>
+                </ul>
+            </div>
+            
+            <!-- Columna 3: Horarios de atención -->
+            <div class="footer-column">
+                <h4>Horarios de atención</h4>
+                <ul class="quick-links">
+                    <li>Lun a Vie: 9-18hs</li>
+                    <li>Sábados: 10-14hs</li>
+                </ul>
             </div>
         </div>
-    </footer>
+        
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Simple - Cosméticos Naturales.</p>
+        </div>
+    </div>
+</footer>
 
-    <!-- ========== SCRIPT PRINCIPAL ========== -->
-    <script src="script.js"></script>
+<!-- ==================== SCRIPT PRINCIPAL ==================== -->
+<script src="script.js"></script>
 </body>
 </html>
