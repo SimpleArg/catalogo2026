@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple — Cosmética Natural</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+<!-- SDKs de Firebase (Versión Modular 10) -->
+<script type="module">
+  // Importamos Firebase y los servicios que vamos a usar
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // TODO: Reemplazá esto con el objeto firebaseConfig que te dio Firebase en el Paso 2
+  const firebaseConfig = {
+    apiKey: "AIzaSyBT1sruTOxxnmo7iqm7XhL9RzjRGqT1k68",
+    authDomain: "simple-cosmetica-natural.firebaseapp.com",
+    projectId: "simple-cosmetica-natural",
+    storageBucket: "simple-cosmetica-natural.firebasestorage.app",
+    messagingSenderId: "198936803183",
+    appId: "1:198936803183:web:cd27aac9e911233cbe1a9a"
+  };
+
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // Acá abajo va a ir toda la lógica de tu aplicación y catálogo...
+</script>
+</head>
+<body>
+
+  <!-- Background de burbujas flotantes -->
+  <div class="bubble-bg" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header>
+    <div class="header-deco"></div>
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <span class="logo-sub">Cosmética Natural</span>
+        <div class="logo-main">Simple</div>
+        <span class="logo-tagline">Ingredientes puros · Resultados reales</span>
+      </div>
+      <div class="header-right">
+        <span class="badge-natural">100% Artesanal</span>
+        <span class="badge-natural" style="--pink-btn:#5aaa7e">Sin parabenos</span>
+        <span class="badge-natural" style="--pink-btn:#c9a84c">Cruelty free</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SECCIONES INFORMATIVAS ──────────────────────────── -->
+  <main>
+    <section id="sobre-nosotras" class="seccion-informativa">
+      <details>
+        <summary><h2>Sobre nosotras</h2></summary>
+        <div class="contenido">
+          <p>Somos un equipo familiar oriundo de Colonia Avellaneda.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="como-comprar" class="seccion-informativa">
+      <details>
+        <summary><h2>Cómo comprar</h2></summary>
+        <div class="pasos-compra">
+          <article>
+            <h3>1. Elegí tus productos</h3>
+            <p>Navegá por las categorías y sumá lo que quieras al carrito.</p>
+          </article>
+          <article>
+            <h3>2. Iniciá el pago</h3>
+            <p>Hacé clic en el icono del carrito y luego en "Consultar por WhatsApp".</p>
+          </article>
+          <article>
+            <h3>3. Completá tus datos</h3>
+            <p>Si es la primera vez agregá tu domicilio de entrega. Luego acordá la fecha con la vendedora.</p>
+          </article>
+          <article>
+            <h3>4. ¡Listo!</h3>
+            <p>Coordinamos el envío y disfrutá tus productos.</p>
+          </article>
+        </div>
+      </details>
+    </section>
+
+    <section id="envios" class="seccion-informativa">
+      <details>
+        <summary><h2>Envíos</h2></summary>
+        <div class="contenido">
+          <p>Realizamos envíos a Colonia Avellaneda, Sauce Montrul, San Benito, Paraná y María Grande.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <!-- ── NAV / FILTRO DE CATEGORÍAS ──────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <button class="nav-btn active" data-filter="all">Todos</button>
+      <button class="nav-btn" data-filter="cabello">Cabello</button>
+      <button class="nav-btn" data-filter="rostro">Rostro</button>
+      <button class="nav-btn" data-filter="cuerpo">Cuerpo</button>
+      <button class="nav-btn" data-filter="maquillaje">Maquillaje</button>
+      <button class="nav-btn" data-filter="otros">Otros</button>
+      <button class="nav-btn" data-filter="promo">🏷️ Promos</button>
+    </div>
+  </nav>
+
+  <!-- ── CONTENEDOR DE PROMOCIONES (Dinámico) ────────────── -->
+  <div id="promo-container"></div>
+
+  <!-- ── CONTENEDOR DEL CATÁLOGO DE PRODUCTOS (Dinámico) ─── -->
+  <div id="catalog-container"></div>
+
+  <!-- Espaciador visual -->
+  <div style="height:60px;"></div>
+
+  <!-- ── PREGUNTAS FRECUENTES ────────────────────────────── -->
+  <section id="preguntas-frecuentes" class="seccion-informativa">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      <details>
+        <summary>¿Tienen local físico?</summary>
+        <p>Actualmente operamos de forma online casi exclusivamente, con excepciones en ferias.</p>
+      </details>
+      <details>
+        <summary>¿Qué medios de pago aceptan?</summary>
+        <p>Aceptamos efectivo y transferencias. Nuestro alias es: evarisco3.ppay</p>
+      </details>
+      <details>
+        <summary>¿Puedo cambiar un producto?</summary>
+        <p>No, asegurate de pedir lo que deseas. El envío corre por nuestra cuenta por lo que aseguramos su buen estado al entregarlo.</p>
+      </details>
+    </div>
+  </section>
+  
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">Simple</div>
+    <div class="footer-tagline">Cosmética Natural · Ingredientes puros, resultados reales</div>
+    <div class="footer-social">
+      <a class="social-icon" href="https://www.instagram.com/cosmetica.simple?stkn=MXNidHcwNG9vdTUwYQ==" target="_blank" title="Instagram">📷</a>
+      <a class="social-icon" href="https://wa.me/5493433005288" target="_blank" title="WhatsApp">💬</a>
+    </div>
+    <div class="footer-links">
+      <a href="#sobre-nosotras">Sobre nosotras</a>
+      <a href="#como-comprar">Cómo comprar</a>
+      <a href="#envios">Envíos</a>
+    </div>
+    <hr />
+    <small>© 2026 Simple Cosmética Natural · Todos los derechos reservados · Elaborado con 💗 de forma artesanal</small>
+  </footer>
+
+  <!-- ── CARRITO FLOTANTE Y TOAST ────────────────────────── -->
+  <div class="cart-float">
+    <button class="cart-btn" onclick="toggleCart()" title="Ver carrito">
+      🛍️
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <!-- ── MODAL DEL CARRITO ───────────────────────────────── -->
+  <div id="cartModal" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);" onclick="closeCartOutside(event)">
+    <div style="position:absolute;right:0;top:0;bottom:0;width:min(400px,100%);background:white;box-shadow:-8px 0 40px rgba(0,0,0,.15);display:flex;flex-direction:column;border-radius:24px 0 0 24px;overflow:hidden;">
+      <div style="padding:24px 24px 16px;background:linear-gradient(135deg,var(--pink) 0%,var(--blue-light) 100%);border-bottom:2px solid var(--pink-mid);display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--pink-btn);font-weight:700;">Mi carrito</div>
+          <div style="font-size:.78rem;color:var(--muted);">Simple Cosmética Natural</div>
+        </div>
+        <button onclick="toggleCart()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);">✕</button>
+      </div>
+      <div id="cartItems" style="flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;gap:10px;"></div>
+      <div style="padding:16px 24px 24px;border-top:1.5px solid var(--pink-mid);background:var(--cream);">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;">
+          <span style="font-size:.9rem;color:var(--muted);">Total estimado</span>
+          <span id="cartTotal" style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--pink-btn);">$0</span>
+        </div>
+        <button onclick="checkout()" style="width:100%;background:var(--pink-btn);color:white;border:none;border-radius:999px;padding:14px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 6px 20px rgba(224,92,126,.35);transition:background .2s;">Consultar por WhatsApp 💬</button>
+        <button onclick="clearCart()" style="width:100%;background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:8px;font-family:'DM Sans',sans-serif;">Vaciar carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCRIPT JS PRINCIPAL ─────────────────────────────── -->
+  <script src="app.js"></script>
+</body>
+</html>
