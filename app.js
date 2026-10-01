@@ -103,7 +103,7 @@ function createProductCard(p) {
           </button>
           <div class="variants-list">
             ${p.variants.map((v, idx) => `
-              <div class="variant-row" onclick="selectVariant(this, '${p.id}',${idx}, '${v.image \vert{}\vert{} p.defaultImage}', '${v.name}', ${v.price}, '${v.ingredients || ''}')">
+              <div class="variant-row" onclick="selectVariant(this, '${p.id}', ${idx}, '${v.image || p.defaultImage}', '${v.name}', ${v.price}, '${v.ingredients || ''}')">
                 <span class="variant-row-name ${idx === 0 ? 'active-variant' : ''}">• ${v.name}</span>                 <span class="variant-row-price">$${v.price.toLocaleString('es-AR')}</span>
                 <button class="btn-variant-add" onclick="event.stopPropagation(); addToCart('${p.name} — ${v.name}',${v.price})">+</button>
               </div>
