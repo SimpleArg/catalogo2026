@@ -1,7 +1,7 @@
 // Importar Firebase y los módulos necesarios desde el CDN oficial
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -84,12 +84,11 @@ function createProductCard(p) {
   const isFamily = p.isFamily && p.variants && p.variants.length > 0;
 
   if (isFamily) {
-    // Tarjeta con variantes (familia)
     const firstVariant = p.variants[0];
     return `
       <div class="product-card family-card" data-product-id="${p.id}">
         <div class="card-img">
-          <img src="${firstVariant.image || p.defaultImage}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=\\'card-img-placeholder\\'><span>🫙</span>${p.name}</div>'" />
+          <img src="${firstVariant.image || p.defaultImage}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=\'card-img-placeholder\'><span>🫙</span>${p.name}</div>'" />
           <span class="card-badge">${p.badge || 'Natural'}</span>
         </div>
         <div class="card-body">
@@ -117,11 +116,10 @@ function createProductCard(p) {
       </div>
     `;
   } else {
-    // Tarjeta de producto simple
     return `
       <div class="product-card" data-product-id="${p.id}">
         <div class="card-img">
-          <img src="${p.defaultImage}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=\\'card-img-placeholder\\'><span>🌿</span>${p.name}</div>'" />
+          <img src="${p.defaultImage}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=\'card-img-placeholder\'><span>🌿</span>${p.name}</div>'" />
           <span class="card-badge">${p.badge || 'Natural'}</span>
         </div>
         <div class="card-body">
@@ -138,23 +136,19 @@ function createProductCard(p) {
   }
 }
 
-// ── SELECCIONAR VARIANTE (Cambia imagen, precio e ingredientes al hacer clic) ──
+// ── SELECCIONAR VARIANTE ──
 window.selectVariant = function(rowElement, productId, variantIdx, imageUrl, variantName, variantPrice, variantIngredients) {
   const card = rowElement.closest('.product-card');
   
-  // Cambiar imagen principal
   const imgElement = card.querySelector('.card-img img');
   if (imgElement) imgElement.src = imageUrl;
 
-  // Actualizar precio visible
   const priceElement = card.querySelector('.variant-price-display');
   if (priceElement) priceElement.innerHTML = `$${variantPrice.toLocaleString('es-AR')} <small>c/u</small>`;
 
-  // Actualizar ingredientes visibles de la variante
   const ingElement = card.querySelector('.variant-ingredients .ingredient-text');
   if (ingElement) ingElement.textContent = variantIngredients || 'Producto artesanal.';
 
-  // Marcar estilo activo en la fila seleccionada
   card.querySelectorAll('.variant-row-name').forEach(el => el.classList.remove('active-variant'));
   rowElement.querySelector('.variant-row-name').classList.add('active-variant');
 };
