@@ -1,3 +1,4 @@
+<style>
 :root {
     --pink:       #fce8ef;
     --pink-mid:   #f7c6d8;
@@ -385,3 +386,4 @@
     .promo-banner { padding: 0 16px; }
     .product-grid { grid-template-columns: 1fr; gap: 16px; }
   }
+</style>
