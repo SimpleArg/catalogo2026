@@ -1,7 +1,7 @@
 // Importar Firebase y los módulos necesarios desde el CDN oficial
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -18,8 +18,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// ── ESTADO DEL CARRITO ────────────────────────────────
+// ── ESTADO DEL CARRITO Y DATOS ────────────────────────
 let cart = [];
+let allProductsCache = []; // Guardamos los productos en memoria para el panel admin
 
 // ── CARGAR PRODUCTOS DESDE FIRESTORE ──────────────────
 async function loadProducts() {
@@ -31,19 +32,24 @@ async function loadProducts() {
   try {
     const querySnapshot = await getDocs(collection(db, "products"));
     let productsByCategory = {};
+    allProductsCache = []; // Limpiar caché
 
     querySnapshot.forEach((docSnap) => {
-      const prod = docSnap.id;
+      const prodId = docSnap.id;
       const data = docSnap.data();
       const cat = data.category || 'otros';
       
+      const productObj = { id: prodId, ...data };
+      allProductsCache.push(productObj);
+
       if (!productsByCategory[cat]) {
         productsByCategory[cat] = [];
       }
-      productsByCategory[cat].push({ id: prod, ...data });
+      productsByCategory[cat].push(productObj);
     });
 
     renderCatalog(productsByCategory);
+    renderAdminProductsList(); // Actualizar panel admin si está abierto
   } catch (error) {
     console.error("Error al cargar productos:", error);
     catalogContainer.innerHTML = '<div style="text-align:center;padding:40px;color:red;">Error al cargar los productos. Verificá tu conexión.</div>';
@@ -60,6 +66,7 @@ function renderCatalog(categoriesObj) {
     rostro: "Rostro",
     cuerpo: "Cuerpo",
     maquillaje: "Maquillaje",
+    promo: "Promos & Combos",
     otros: "Otros"
   };
 
@@ -79,7 +86,7 @@ function renderCatalog(categoriesObj) {
   }
 }
 
-// ── CREAR CADA TARJETA DE PRODUCTO (Soporta familias y simples) ──
+// ── CREAR CADA TARJETA DE PRODUCTO ────────────────────
 function createProductCard(p) {
   const isFamily = p.isFamily && p.variants && p.variants.length > 0;
 
@@ -103,7 +110,7 @@ function createProductCard(p) {
           </button>
           <div class="variants-list">
             ${p.variants.map((v, idx) => `
-              <div class="variant-row" onclick="selectVariant(this, '${p.id}', ${idx}, '${v.image || p.defaultImage}', '${v.name}', ${v.price}, '${v.ingredients || ''}')">
+              <div class="variant-row" onclick="selectVariant(this, '${p.id}',${idx}, '${v.image \vert{}\vert{} p.defaultImage}', '${v.name}', ${v.price}, '${v.ingredients || ''}')">
                 <span class="variant-row-name ${idx === 0 ? 'active-variant' : ''}">• ${v.name}</span>                 <span class="variant-row-price">$${v.price.toLocaleString('es-AR')}</span>
                 <button class="btn-variant-add" onclick="event.stopPropagation(); addToCart('${p.name} — ${v.name}',${v.price})">+</button>
               </div>
@@ -136,10 +143,9 @@ function createProductCard(p) {
   }
 }
 
-// ── SELECCIONAR VARIANTE ──
+// ── SELECCIONAR VARIANTE ──────────────────────────────
 window.selectVariant = function(rowElement, productId, variantIdx, imageUrl, variantName, variantPrice, variantIngredients) {
   const card = rowElement.closest('.product-card');
-  
   const imgElement = card.querySelector('.card-img img');
   if (imgElement) imgElement.src = imageUrl;
 
@@ -170,7 +176,6 @@ function updateCartUI() {
 
   if (countEl) countEl.textContent = cart.reduce((s, i) => s + i.qty, 0);
   if (totalEl) totalEl.textContent = '$' + total.toLocaleString('es-AR');
-  
   if (!itemsEl) return;
 
   if (cart.length === 0) {
@@ -260,7 +265,148 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   });
 });
 
-// Inicializar al cargar la página
+
+// ── 🔐 LÓGICA DEL PANEL DE ADMINISTRACIÓN Y AUTENTICACIÓN ──
+
+window.toggleAdminModal = function() {
+  const modal = document.getElementById('adminModal');
+  if (modal) {
+    modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+  }
+};
+
+window.closeAdminOutside = function(e) {
+  if (e.target === document.getElementById('adminModal')) toggleAdminModal();
+};
+
+// Escuchar cambios de estado de autenticación en Firebase
+onAuthStateChanged(auth, (user) => {
+  const loginView = document.getElementById('adminLoginView');
+  const dashView = document.getElementById('adminDashboardView');
+  
+  if (user) {
+    // Está logueado
+    if (loginView) loginView.style.display = 'none';
+    if (dashView) dashView.style.display = 'block';
+    renderAdminProductsList();
+  } else {
+    // No está logueado
+    if (loginView) loginView.style.display = 'block';
+    if (dashView) dashView.style.display = 'none';
+  }
+});
+
+// Iniciar sesión
+window.loginAdmin = async function() {
+  const email = document.getElementById('adminEmail').value;
+  const password = document.getElementById('adminPassword').value;
+  const errorEl = document.getElementById('loginError');
+
+  try {
+    errorEl.textContent = '';
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error("Error de login:", error);
+    errorEl.textContent = "Credenciales incorrectas o error de acceso.";
+  }
+};
+
+// Cerrar sesión
+window.logoutAdmin = async function() {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Error al salir:", error);
+  }
+};
+
+// Alternar campo de precio vs aviso de familia en el form
+window.toggleVariantInputMode = function(checkbox) {
+  const priceContainer = document.getElementById('simplePriceContainer');
+  const familyNotice = document.getElementById('familyNoticeContainer');
+  if (checkbox.checked) {
+    priceContainer.style.display = 'none';
+    familyNotice.style.display = 'block';
+  } else {
+    priceContainer.style.display = 'block';
+    familyNotice.style.display = 'none';
+  }
+};
+
+// Agregar producto simple o familia vacía desde el panel
+window.handleAddNewProduct = async function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('newProdName').value;
+  const category = document.getElementById('newProdCategory').value;
+  const badge = document.getElementById('newProdBadge').value || 'Natural';
+  const description = document.getElementById('newProdDesc').value;
+  const defaultImage = document.getElementById('newProdImage').value || 'img/placeholder.jpg';
+  const isFamily = document.getElementById('newProdIsFamily').checked;
+
+  let newProductData = {
+    name,
+    category,
+    badge,
+    description,
+    defaultImage,
+    isFamily
+  };
+
+  if (isFamily) {
+    newProductData.variants = [
+      { name: "Variante Principal", price: 10000, image: defaultImage, ingredients: "Ingredientes naturales." }
+    ];
+  } else {
+    newProductData.price = Number(document.getElementById('newProdPrice').value) || 0;
+  }
+
+  try {
+    await addDoc(collection(db, "products"), newProductData);
+    showToast('✓ Producto guardado en Firestore');
+    document.getElementById('addProductForm').reset();
+    document.getElementById('simplePriceContainer').style.display = 'block';
+    document.getElementById('familyNoticeContainer').style.display = 'none';
+    loadProducts(); // Recargar catálogo y lista admin
+  } catch (error) {
+    console.error("Error al guardar:", error);
+    alert("Error al guardar el producto. Verificá tus permisos de Firestore.");
+  }
+};
+
+// Renderizar la lista de administración para borrar
+function renderAdminProductsList() {
+  const listEl = document.getElementById('adminProductsList');
+  if (!listEl) return;
+
+  if (allProductsCache.length === 0) {
+    listEl.innerHTML = '<div style="font-size:0.8rem;color:var(--muted);text-align:center;padding:10px;">No hay productos cargados.</div>';
+    return;
+  }
+
+  listEl.innerHTML = allProductsCache.map(p => `
+    <div style="display:flex; justify-content:space-between; align-items:center; background:white; border:1px solid #eee; padding:8px 12px; border-radius:8px;">
+      <div style="font-size:0.85rem; font-weight:600; color:var(--dark);">${p.name} <span style="font-weight:normal;color:var(--muted);font-size:0.75rem;">(${p.category})</span></div>
+      <button onclick="deleteProduct('${p.id}')" style="background:#ffebee; color:#c62828; border:none; padding:4px 8px; border-radius:6px; cursor:pointer; font-size:0.75rem; font-weight:600;">Eliminar</button>
+    </div>
+  `).join('');
+}
+
+// Eliminar producto de Firestore
+window.deleteProduct = async function(productId) {
+  if (!confirm("¿Estás segura de que querés eliminar este producto?")) return;
+
+  try {
+    await deleteDoc(doc(db, "products", productId));
+    showToast('🗑️ Producto eliminado');
+    loadProducts();
+  } catch (error) {
+    console.error("Error al eliminar:", error);
+    alert("No se pudo eliminar el producto.");
+  }
+};
+
+// ── INICIALIZAR AL CARGAR LA PÁGINA ───────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadProducts();
   updateCartUI();
