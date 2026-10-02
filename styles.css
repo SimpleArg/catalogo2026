@@ -1,4 +1,5 @@
 <style>
+/* ── 1. VARIABLES GLOBALES ─────────────────────────── */
   :root {
     --pink:       #fce8ef;
     --pink-mid:   #f7c6d8;
@@ -12,6 +13,7 @@
     --dark:       #2d2027;
     --text:       #3b2732;
     --muted:      #8a6a76;
+    --bg-soft:    rgba(224, 92, 126, 0.05);
     --bubble1:    #5ab4e0;
     --bubble2:    #b3dff5;
     --bubble3:    #84ccee;
@@ -20,6 +22,7 @@
     --shadow-card:0 4px 24px rgba(45, 32, 39, 0.09);
   }
 
+  /* ── 2. RESET Y BASE ───────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
@@ -31,7 +34,7 @@
     overflow-x: hidden;
   }
 
-  /* ── BUBBLES BACKGROUND ─────────────────────────────── */
+  /* ── 3. BUBBLES BACKGROUND ─────────────────────────── */
   .bubble-bg {
     position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
   }
@@ -58,7 +61,7 @@
     100% { transform: translateY(0) scale(1); }
   }
 
-  /* ── HEADER ─────────────────────────────────────────── */
+  /* ── 4. HEADER ─────────────────────────────────────── */
   header {
     position: relative; z-index: 10;
     background: linear-gradient(135deg, var(--pink) 0%, #fdf0f5 40%, var(--blue-light) 100%);
@@ -104,7 +107,7 @@
     border-radius: 50%; opacity: .5;
   }
 
-  /* ── NAV / FILTER ───────────────────────────────────── */
+  /* ── 5. NAV / FILTER ───────────────────────────────── */
   nav {
     position: sticky; top: 0; z-index: 20;
     background: rgba(255,250,247,.92);
@@ -135,7 +138,7 @@
     box-shadow: 0 4px 14px rgba(224,92,126,.3);
   }
 
-  /* ── PROMO BANNER ───────────────────────────────────── */
+  /* ── 6. PROMO BANNER ───────────────────────────────── */
   .promo-banner {
     position: relative; z-index: 5;
     max-width: 1200px; margin: 40px auto 0;
@@ -185,7 +188,7 @@
   .promo-off { font-size: .75rem; font-weight: 600; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
   .promo-products { color: rgba(255,255,255,.75); font-size: .78rem; margin-top: 6px; }
 
-  /* ── SECTIONS ────────────────────────────────────────── */
+  /* ── 7. SECCIONES Y CATÁLOGO ────────────────────────── */
   .catalog-section {
     position: relative; z-index: 5;
     max-width: 1200px; margin: 56px auto 0;
@@ -202,23 +205,19 @@
     font-size: 1.7rem; font-weight: 700;
     color: var(--dark);
   }
-  .section-title em {
-    font-style: italic; color: var(--pink-btn);
-  }
+  .section-title em { font-style: italic; color: var(--pink-btn); }
   .section-count {
     font-size: .78rem; color: var(--muted);
     background: var(--pink); border-radius: 999px;
     padding: 3px 10px; font-weight: 500;
   }
 
-  /* ── PRODUCT GRID ────────────────────────────────────── */
+  /* ── 8. PRODUCT GRID & CARDS ───────────────────────── */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 24px;
   }
-
-  /* ── PRODUCT CARD ────────────────────────────────────── */
   .product-card {
     background: white;
     border-radius: var(--radius);
@@ -233,8 +232,6 @@
     transform: translateY(-6px);
     box-shadow: 0 16px 48px rgba(224,92,126,.18);
   }
-
-  /* image area */
   .card-img {
     width: 100%; aspect-ratio: 1/1;
     background: linear-gradient(135deg, var(--pink) 0%, var(--blue-light) 100%);
@@ -251,8 +248,6 @@
     color: var(--muted); font-size: .8rem; text-align: center; padding: 20px;
   }
   .card-img-placeholder span { font-size: 2.8rem; }
-
-  /* badges on image */
   .card-badge {
     position: absolute; top: 12px; left: 12px;
     background: var(--pink-btn); color: white;
@@ -264,7 +259,6 @@
   .card-badge.natural { background: #5aaa7e; }
   .card-badge.premium { background: var(--gold); }
 
-  /* body */
   .card-body {
     padding: 18px 20px 14px;
     flex: 1; display: flex; flex-direction: column; gap: 8px;
@@ -274,11 +268,7 @@
     font-size: 1.05rem; font-weight: 700; color: var(--dark);
     line-height: 1.25;
   }
-  .card-desc {
-    font-size: .8rem; color: var(--muted); line-height: 1.5;
-  }
-
-  /* ingredients */
+  .card-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; }
   .card-ingredients {
     font-size: .73rem; color: var(--muted);
     background: var(--pink); border-radius: 8px;
@@ -290,8 +280,6 @@
     font-size: .68rem; letter-spacing: .08em;
     text-transform: uppercase; margin-bottom: 3px;
   }
-
-  /* variants */
   .card-variants { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .variant-chip {
     background: var(--blue-light); color: var(--blue-deep);
@@ -308,8 +296,6 @@
     font-size: .72rem; color: var(--muted); font-style: italic;
     margin-top: 2px;
   }
-
-  /* footer */
   .card-footer {
     padding: 12px 20px 18px;
     display: flex; align-items: center; justify-content: space-between;
@@ -335,7 +321,7 @@
     box-shadow: 0 6px 18px rgba(224,92,126,.4);
   }
 
-  /* family card (has variants accordion) */
+  /* ── 9. FAMILY CARD & ACORDIONES ───────────────────── */
   .family-card .card-body { gap: 10px; }
   .variants-toggle {
     background: none; border: 1.5px solid var(--pink-mid);
@@ -370,7 +356,75 @@
   }
   .btn-variant-add:hover { background: #c94a6d; }
 
-  /* ── FOOTER ──────────────────────────────────────────── */
+  /* ── 10. SECCIÓN INFORMATIVA ───────────────────────── */
+  .seccion-informativa {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    border: 1.5px solid rgba(224,92,126,.08);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .seccion-informativa h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: var(--pink-btn);
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--pink-mid);
+    padding-bottom: 0.5rem;
+  }
+  .seccion-informativa h3 {
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .seccion-informativa p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .seccion-informativa article {
+    padding: 0.8rem;
+    border-left: 2px solid var(--pink-mid);
+    margin-bottom: 0.8rem;
+    background: var(--cream);
+    border-radius: 0 8px 8px 0;
+    transition: border-color 0.3s ease;
+  }
+  .seccion-informativa article:hover {
+    border-left-color: var(--pink-btn);
+  }
+  .seccion-informativa details {
+    background: var(--pink);
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+  .seccion-informativa summary {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--pink-btn);
+    list-style: none;
+  }
+  .seccion-informativa summary::before {
+    content: "✦ ";
+    font-size: 0.8rem;
+  }
+  .seccion-informativa strong {
+    color: var(--pink-btn);
+  }
+
+  /* ── 11. FOOTER, CARRITO Y EXTRAS ──────────────────── */
   footer {
     position: relative; z-index: 5;
     margin-top: 80px;
@@ -407,7 +461,6 @@
   footer hr { border-color: rgba(255,255,255,.1); margin-bottom: 16px; }
   footer small { font-size: .72rem; color: rgba(255,255,255,.35); }
 
-  /* ── CART FLOAT ──────────────────────────────────────── */
   .cart-float {
     position: fixed; bottom: 28px; right: 28px; z-index: 100;
   }
@@ -430,7 +483,6 @@
     border: 2px solid white;
   }
 
-  /* toast */
   .toast {
     position: fixed; bottom: 100px; right: 28px; z-index: 200;
     background: var(--dark); color: white;
@@ -443,7 +495,7 @@
   }
   .toast.show { transform: translateY(0) scale(1); opacity: 1; }
 
-  /* ── ANIMATIONS ──────────────────────────────────────── */
+  /* ── 12. ANIMACIONES Y UTILIDADES ──────────────────── */
   @keyframes fadeSlideUp {
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -453,7 +505,9 @@
   .catalog-section:nth-child(4) { animation-delay: .15s; }
   .catalog-section:nth-child(5) { animation-delay: .20s; }
 
-  /* ── RESPONSIVE ──────────────────────────────────────── */
+  .hidden { display: none !important; }
+
+  /* ── 13. RESPONSIVE ────────────────────────────────── */
   @media(max-width:640px) {
     .header-inner { padding: 28px 20px 20px; }
     .logo-main { font-size: 2.6rem; }
@@ -464,89 +518,4 @@
     .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
     footer { padding: 36px 20px 24px; }
   }
-
-  /* ── HIDDEN (filter) ─────────────────────────────────── */
-  .hidden { display: none !important; }
-
-
-
-  /* Variables de color para la class informativa */
-:root {
-  --muted: #6c757d; /* Gris suave para textos secundarios */
-  --pink-btn: #e05c7e; /* El rosa de tu logo-main */
-  --bg-soft: rgba(224, 92, 126, 0.05); /* Un fondo rosado casi imperceptible */
-}
-
-.seccion-informativa {
-  max-width: 400px;
-  margin: 1rem auto;
-  padding: 1.75rem;
-  background-color: #ffffff;
-  border-radius: 7.5px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  font-family: 'DM Sans', sans-serif; /* Consistencia con .logo-sub */
-  color: #444;
-  line-height: 0.8;
-}
-
-.seccion-informativa h2 {
-  font-family: 'Dancing Script', cursive; /* El toque personal del logo-main */
-  font-size: 1.75rem;
-  color: var(--pink-btn);
-  margin-bottom: 0.75rem;
-  text-align: center;
-  border-bottom: 0.5px solid var(--bg-soft);
-  padding-bottom: 0.25rem;
-}
-
-.seccion-informativa h3 {
-  font-family: 'DM Sans', sans-serif;
-  text-transform: uppercase;
-  font-size: 0.45rem;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin-top: 0.75rem;
-}
-
-.seccion-informativa p {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-/* Estilo para los pasos de compra y listas */
-.seccion-informativa article {
-  padding: 0.5rem;
-  border-left: 1.5px solid var(--bg-soft);
-  margin-bottom: 0.5rem;
-  transition: border-color 0.3s ease;
-}
-
-.seccion-informativa article:hover {
-  border-left-color: var(--pink-btn);
-}
-
-/* Estilo para el acordeón de Preguntas Frecuentes */
-.seccion-informativa details {
-  background: var(--bg-soft);
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  margin-bottom: 0.25rem;
-  cursor: pointer;
-}
-
-.seccion-informativa summary {
-  font-weight: 250;
-  color: var(--pink-btn);
-  list-style: none; /* Quita la flecha por defecto en algunos navegadores */
-}
-
-.seccion-informativa summary::before {
-  content: "✦ "; /* Un detalle sutil decorativo */
-  font-size: 0.8rem;
-}
-
-.seccion-informativa strong {
-  color: var(--pink-btn);
-}
-  
 </style>
