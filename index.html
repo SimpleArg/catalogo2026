@@ -167,7 +167,91 @@
       </div>
     </div>
   </div>
+  
+<!-- BOTÓN DISCRETO DE ACCESO ADMIN (Al pie de la página) -->
+<footer style="text-align:center; padding: 40px 20px; color: var(--muted); font-size: 0.85rem;">
+  <p>Simple Cosmética Natural 🌿 — Todos los derechos reservados</p>
+  <button onclick="toggleAdminModal()" style="background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.75rem; text-decoration: underline; margin-top: 8px; opacity: 0.6;">
+    Panel de Administración
+  >></button>
+</footer>
 
+<!-- MODAL DE ADMINISTRACIÓN (Oculto por defecto) -->
+<div id="adminModal" onclick="closeAdminOutside(event)" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; overflow-y:auto; padding:20px;">
+  <div style="max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+    
+    <!-- ENCABEZADO DEL MODAL -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h3 style="margin:0; font-family: serif; color: var(--dark);">Panel de Administración 🔐</h3>
+      <button onclick="toggleAdminModal()" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">✕</button>
+    </div>
+
+    <!-- VISTA 1: LOGIN (Se muestra si NO estás logueada) -->
+    <div id="adminLoginView">
+      <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 16px;">Ingresá tus credenciales de administrador para gestionar el catálogo.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <input type="email" id="adminEmail" placeholder="Correo electrónico" style="padding: 10px; border: 1px solid var(--pink-mid); border-radius: 8px; font-size: 0.9rem;" />
+        <input type="password" id="adminPassword" placeholder="Contraseña" style="padding: 10px; border: 1px solid var(--pink-mid); border-radius: 8px; font-size: 0.9rem;" />
+        <button onclick="loginAdmin()" style="background: var(--pink-btn); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer;">Ingresar</button>
+        <div id="loginError" style="color: red; font-size: 0.8rem; text-align: center;"></div>
+      </div>
+    </div>
+
+    <!-- VISTA 2: DASHBOARD (Se muestra SÓLO cuando estás logueada) -->
+    <div id="adminDashboardView" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; background: var(--pink); padding: 10px 14px; border-radius: 8px; margin-bottom: 20px;">
+        <span style="font-size: 0.85rem; font-weight: 600;">Sesión activa de Administrador</span>
+        <button onclick="logoutAdmin()" style="background: white; border: 1px solid var(--pink-mid); padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">Cerrar sesión</button>
+      </div>
+
+      <!-- FORMULARIO PARA NUEVO PRODUCTO / FAMILIA -->
+      <h4 style="margin: 0 0 10px 0; font-size: 0.95rem; color: var(--dark);">Agregar Nuevo Producto o Promoción</h4>
+      <form id="addProductForm" onsubmit="handleAddNewProduct(event)" style="display: flex; flex-direction: column; gap: 10px; background: #faf8f6; padding: 14px; border-radius: 12px; margin-bottom: 24px;">
+        <input type="text" id="newProdName" placeholder="Nombre (Ej: Shampoo Sólido o Promo Combo)" required style="padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem;" />
+        
+        <div style="display: flex; gap: 10px;">
+          <select id="newProdCategory" style="flex:1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem;">
+            <option value="cabello">Cabello</option>
+            <option value="rostro">Rostro</option>
+            <option value="cuerpo">Cuerpo</option>
+            <option value="maquillaje">Maquillaje</option>
+            <option value="promo">Promos / Combos</option>
+            <option value="otros">Otros</option>
+          </select>
+          <input type="text" id="newProdBadge" placeholder="Etiqueta (Ej: Cabello, Oferta)" style="flex:1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem;" />
+        </div>
+
+        <textarea id="newProdDesc" placeholder="Descripción breve..." style="padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; resize: vertical;" rows="2"></textarea>
+        
+        <div style="display: flex; gap: 10px;">
+          <input type="text" id="newProdImage" placeholder="Imagen principal (Ej: img/shampoo.jpg)" style="flex:2; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem;" />
+          <label style="flex:1; display:flex; align-items:center; gap:6px; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" id="newProdIsFamily" onchange="toggleVariantInputMode(this)" /> ¿Tiene variantes?
+          </label>
+        </div>
+
+        <!-- Si es producto simple, pide precio único -->
+        <div id="simplePriceContainer">
+          <input type="number" id="newProdPrice" placeholder="Precio único (Ej: 12000)" style="width:100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem;" />
+        </div>
+
+        <!-- Si es familia, aviso de variantes -->
+        <div id="familyNoticeContainer" style="display:none; font-size:0.78rem; color:var(--muted); background:#eee; padding:8px; border-radius:6px;">
+          * Los productos con variantes se pueden configurar directamente desde Firebase o añadir con una estructura estándar.
+        </div>
+
+        <button type="submit" style="background: var(--dark); color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">Guardar Producto en Firestore</button>
+      </form>
+
+      <!-- LISTADO DE GESTIÓN RÁPIDA -->
+      <h4 style="margin: 0 0 10px 0; font-size: 0.95rem; color: var(--dark);">Listado de Productos Actuales</h4>
+      <div id="adminProductsList" style="max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+        <!-- Se llena dinámicamente con JS -->
+      </div>
+    </div>
+
+  </div>
+</div>
   <!-- ── SCRIPT JS PRINCIPAL ─────────────────────────────── -->
   <script type="module" src="app.js"></script>
 </body>
