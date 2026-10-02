@@ -1,5 +1,5 @@
 <style>
-:root {
+  :root {
     --pink:       #fce8ef;
     --pink-mid:   #f7c6d8;
     --pink-deep:  #e8829a;
@@ -18,7 +18,6 @@
     --radius:     18px;
     --shadow:     0 8px 32px rgba(224, 92, 126, 0.13);
     --shadow-card:0 4px 24px rgba(45, 32, 39, 0.09);
-    --bg-soft:    rgba(224, 92, 126, 0.08);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -136,100 +135,57 @@
     box-shadow: 0 4px 14px rgba(224,92,126,.3);
   }
 
-  /* ── SECCIONES INFORMATIVAS (Estilo Acordeón / Tarjetas) ── */
-  .seccion-informativa {
-    max-width: 800px;
-    margin: 1.5rem auto;
-    padding: 1.5rem 2rem;
-    background-color: #ffffff;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-card);
-    border: 1.5px solid rgba(224,92,126,.08);
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
+  /* ── PROMO BANNER ───────────────────────────────────── */
+  .promo-banner {
+    position: relative; z-index: 5;
+    max-width: 1200px; margin: 40px auto 0;
+    padding: 0 32px;
+    animation: fadeSlideUp .6s ease both;
   }
-
-  .seccion-informativa h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--dark);
+  .promo-card {
+    background: linear-gradient(120deg, var(--blue-deep) 0%, var(--blue-mid) 50%, #7ecce8 100%);
+    border-radius: 24px; padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 12px 40px rgba(46,134,193,.25);
+    overflow: hidden; position: relative;
   }
-
-  .seccion-informativa details {
-    background: var(--bg-soft);
-    padding: 0.8rem 1rem;
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-    transition: background .2s ease;
+  .promo-card::before {
+    content: '';
+    position: absolute; right: -30px; top: -30px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,.12); border-radius: 50%;
   }
-
-  .seccion-informativa details:hover {
-    background: var(--pink);
+  .promo-card::after {
+    content: '';
+    position: absolute; left: 30%; bottom: -20px;
+    width: 80px; height: 80px;
+    background: rgba(255,255,255,.08); border-radius: 50%;
   }
-
-  .seccion-informativa summary {
-    font-weight: 600;
-    color: var(--pink-btn);
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .seccion-informativa summary h2 {
-    font-size: 1.25rem;
-    color: var(--pink-btn);
-    font-family: 'Dancing Script', cursive;
+  .promo-left { flex: 1; min-width: 200px; }
+  .promo-tag {
     display: inline-block;
+    background: rgba(255,255,255,.22); color: white;
+    border-radius: 999px; padding: 4px 14px;
+    font-size: .72rem; font-weight: 600; letter-spacing: .15em;
+    text-transform: uppercase; margin-bottom: 8px;
   }
-
-  .seccion-informativa summary::-webkit-details-marker { display: none; }
-
-  .seccion-informativa summary::before {
-    content: "✦ ";
-    font-size: 0.8rem;
+  .promo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: white; font-weight: 700; line-height: 1.2;
   }
-
-  .seccion-informativa .contenido, 
-  .seccion-informativa .pasos-compra,
-  .seccion-informativa .faq {
-    margin-top: 1rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--pink-mid);
+  .promo-subtitle { color: rgba(255,255,255,.85); font-size: .9rem; margin-top: 4px; }
+  .promo-badge {
+    background: white; color: var(--blue-deep);
+    border-radius: 20px; padding: 20px 28px;
+    text-align: center; flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
   }
+  .promo-pct { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1; color: var(--blue-deep); }
+  .promo-off { font-size: .75rem; font-weight: 600; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+  .promo-products { color: rgba(255,255,255,.75); font-size: .78rem; margin-top: 6px; }
 
-  .seccion-informativa p {
-    font-size: 0.92rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-top: 4px;
-  }
-
-  .pasos-compra {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .pasos-compra article {
-    background: white;
-    padding: 14px;
-    border-radius: 10px;
-    border-left: 3px solid var(--pink-btn);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  }
-
-  .pasos-compra h3 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--pink-btn);
-    margin-bottom: 6px;
-  }
-
-  /* ── SECTIONS / CATÁLOGO ────────────────────────────── */
+  /* ── SECTIONS ────────────────────────────────────────── */
   .catalog-section {
     position: relative; z-index: 5;
     max-width: 1200px; margin: 56px auto 0;
@@ -255,13 +211,14 @@
     padding: 3px 10px; font-weight: 500;
   }
 
-  /* ── PRODUCT GRID & CARDS ────────────────────────────── */
+  /* ── PRODUCT GRID ────────────────────────────────────── */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 24px;
   }
 
+  /* ── PRODUCT CARD ────────────────────────────────────── */
   .product-card {
     background: white;
     border-radius: var(--radius);
@@ -277,6 +234,7 @@
     box-shadow: 0 16px 48px rgba(224,92,126,.18);
   }
 
+  /* image area */
   .card-img {
     width: 100%; aspect-ratio: 1/1;
     background: linear-gradient(135deg, var(--pink) 0%, var(--blue-light) 100%);
@@ -288,7 +246,25 @@
     transition: transform .38s ease;
   }
   .product-card:hover .card-img img { transform: scale(1.04); }
+  .card-img-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--muted); font-size: .8rem; text-align: center; padding: 20px;
+  }
+  .card-img-placeholder span { font-size: 2.8rem; }
 
+  /* badges on image */
+  .card-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--pink-btn); color: white;
+    border-radius: 999px; padding: 4px 10px;
+    font-size: .68rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase;
+    box-shadow: 0 3px 10px rgba(224,92,126,.3);
+  }
+  .card-badge.natural { background: #5aaa7e; }
+  .card-badge.premium { background: var(--gold); }
+
+  /* body */
   .card-body {
     padding: 18px 20px 14px;
     flex: 1; display: flex; flex-direction: column; gap: 8px;
@@ -302,6 +278,38 @@
     font-size: .8rem; color: var(--muted); line-height: 1.5;
   }
 
+  /* ingredients */
+  .card-ingredients {
+    font-size: .73rem; color: var(--muted);
+    background: var(--pink); border-radius: 8px;
+    padding: 8px 10px; line-height: 1.5;
+    margin-top: 2px;
+  }
+  .card-ingredients strong {
+    display: block; color: var(--pink-btn);
+    font-size: .68rem; letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: 3px;
+  }
+
+  /* variants */
+  .card-variants { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .variant-chip {
+    background: var(--blue-light); color: var(--blue-deep);
+    border-radius: 999px; padding: 3px 10px;
+    font-size: .7rem; font-weight: 500; cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all .18s;
+  }
+  .variant-chip:hover, .variant-chip.selected {
+    background: var(--blue-mid); color: white;
+    border-color: var(--blue-deep);
+  }
+  .card-variant-note {
+    font-size: .72rem; color: var(--muted); font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* footer */
   .card-footer {
     padding: 12px 20px 18px;
     display: flex; align-items: center; justify-content: space-between;
@@ -312,6 +320,7 @@
     font-size: 1.25rem; font-weight: 700;
     color: var(--pink-btn);
   }
+  .card-price small { font-size: .7rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
   .btn-add {
     background: var(--pink-btn); color: white;
     border: none; border-radius: 999px;
@@ -323,7 +332,43 @@
   .btn-add:hover {
     background: #c94a6d;
     transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(224,92,126,.4);
   }
+
+  /* family card (has variants accordion) */
+  .family-card .card-body { gap: 10px; }
+  .variants-toggle {
+    background: none; border: 1.5px solid var(--pink-mid);
+    border-radius: 8px; padding: 7px 14px;
+    font-size: .78rem; font-weight: 500; color: var(--muted);
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; transition: all .2s;
+    margin-top: 4px;
+  }
+  .variants-toggle:hover { background: var(--pink); color: var(--pink-btn); border-color: var(--pink-btn); }
+  .variants-toggle .arrow { transition: transform .22s; font-size: .7rem; }
+  .variants-toggle.open .arrow { transform: rotate(180deg); }
+  .variants-list {
+    display: none; flex-direction: column; gap: 6px;
+    padding: 8px 0;
+  }
+  .variants-list.open { display: flex; }
+  .variant-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--pink); border-radius: 10px;
+    padding: 8px 12px; gap: 8px;
+  }
+  .variant-row-name { font-size: .8rem; font-weight: 500; color: var(--dark); flex: 1; }
+  .variant-row-price { font-size: .85rem; font-weight: 700; color: var(--pink-btn); white-space: nowrap; }
+  .btn-variant-add {
+    background: var(--pink-btn); color: white;
+    border: none; border-radius: 999px;
+    padding: 4px 12px; font-size: .7rem; font-weight: 600;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background .18s;
+  }
+  .btn-variant-add:hover { background: #c94a6d; }
 
   /* ── FOOTER ──────────────────────────────────────────── */
   footer {
@@ -398,15 +443,110 @@
   }
   .toast.show { transform: translateY(0) scale(1); opacity: 1; }
 
+  /* ── ANIMATIONS ──────────────────────────────────────── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .catalog-section:nth-child(2) { animation-delay: .05s; }
+  .catalog-section:nth-child(3) { animation-delay: .10s; }
+  .catalog-section:nth-child(4) { animation-delay: .15s; }
+  .catalog-section:nth-child(5) { animation-delay: .20s; }
+
   /* ── RESPONSIVE ──────────────────────────────────────── */
   @media(max-width:640px) {
     .header-inner { padding: 28px 20px 20px; }
     .logo-main { font-size: 2.6rem; }
     nav { padding: 0 16px; }
     .catalog-section { padding: 0 16px; }
+    .promo-banner { padding: 0 16px; }
+    .promo-card { padding: 24px 20px; }
     .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
     footer { padding: 36px 20px 24px; }
   }
 
+  /* ── HIDDEN (filter) ─────────────────────────────────── */
   .hidden { display: none !important; }
+
+
+
+  /* Variables de color para la class informativa */
+:root {
+  --muted: #6c757d; /* Gris suave para textos secundarios */
+  --pink-btn: #e05c7e; /* El rosa de tu logo-main */
+  --bg-soft: rgba(224, 92, 126, 0.05); /* Un fondo rosado casi imperceptible */
+}
+
+.seccion-informativa {
+  max-width: 400px;
+  margin: 1rem auto;
+  padding: 1.75rem;
+  background-color: #ffffff;
+  border-radius: 7.5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  font-family: 'DM Sans', sans-serif; /* Consistencia con .logo-sub */
+  color: #444;
+  line-height: 0.8;
+}
+
+.seccion-informativa h2 {
+  font-family: 'Dancing Script', cursive; /* El toque personal del logo-main */
+  font-size: 1.75rem;
+  color: var(--pink-btn);
+  margin-bottom: 0.75rem;
+  text-align: center;
+  border-bottom: 0.5px solid var(--bg-soft);
+  padding-bottom: 0.25rem;
+}
+
+.seccion-informativa h3 {
+  font-family: 'DM Sans', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.45rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 0.75rem;
+}
+
+.seccion-informativa p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Estilo para los pasos de compra y listas */
+.seccion-informativa article {
+  padding: 0.5rem;
+  border-left: 1.5px solid var(--bg-soft);
+  margin-bottom: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.seccion-informativa article:hover {
+  border-left-color: var(--pink-btn);
+}
+
+/* Estilo para el acordeón de Preguntas Frecuentes */
+.seccion-informativa details {
+  background: var(--bg-soft);
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+}
+
+.seccion-informativa summary {
+  font-weight: 250;
+  color: var(--pink-btn);
+  list-style: none; /* Quita la flecha por defecto en algunos navegadores */
+}
+
+.seccion-informativa summary::before {
+  content: "✦ "; /* Un detalle sutil decorativo */
+  font-size: 0.8rem;
+}
+
+.seccion-informativa strong {
+  color: var(--pink-btn);
+}
+  
 </style>
