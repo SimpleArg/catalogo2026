@@ -107,13 +107,72 @@
     border-radius: 50%; opacity: .5;
   }
 
-  /* ── 5. NAV / FILTER ───────────────────────────────── */
+  /* ── 5. MENÚ SUPERIOR DE ACORDIONES / INFO (Sobre nosotras, Cómo comprar, Envíos) ── */
+  .info-dropdowns-section {
+    max-width: 1200px;
+    margin: 20px auto 10px;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .info-dropdown-card {
+    background: white;
+    border: 1.5px solid var(--pink-mid);
+    border-radius: 999px;
+    padding: 12px 24px;
+    box-shadow: 0 4px 16px rgba(224,92,126,.08);
+    transition: all 0.3s ease;
+  }
+  .info-dropdown-card details {
+    cursor: pointer;
+  }
+  .info-dropdown-card summary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--pink-btn);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-dropdown-card summary::-webkit-details-marker {
+    display: none;
+  }
+  .info-dropdown-card summary::before {
+    content: "▾";
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+  }
+  .info-dropdown-card details[open] summary::before {
+    transform: rotate(180deg);
+  }
+  .info-dropdown-content {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--pink);
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .info-dropdown-content ol {
+    padding-left: 20px;
+    margin-top: 6px;
+  }
+  .info-dropdown-content li {
+    margin-bottom: 4px;
+  }
+
+  /* ── 6. NAV / FILTRO DE CATEGORÍAS ─────────────────── */
   nav {
     position: sticky; top: 0; z-index: 20;
     background: rgba(255,250,247,.92);
     backdrop-filter: blur(14px);
     border-bottom: 1.5px solid var(--pink-mid);
+    border-top: 1.5px solid var(--pink-mid);
     padding: 0 32px;
+    margin-top: 15px;
   }
   .nav-inner {
     max-width: 1200px; margin: 0 auto;
@@ -137,56 +196,6 @@
     border-color: var(--pink-btn);
     box-shadow: 0 4px 14px rgba(224,92,126,.3);
   }
-
-  /* ── 6. PROMO BANNER ───────────────────────────────── */
-  .promo-banner {
-    position: relative; z-index: 5;
-    max-width: 1200px; margin: 40px auto 0;
-    padding: 0 32px;
-    animation: fadeSlideUp .6s ease both;
-  }
-  .promo-card {
-    background: linear-gradient(120deg, var(--blue-deep) 0%, var(--blue-mid) 50%, #7ecce8 100%);
-    border-radius: 24px; padding: 32px 40px;
-    display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    flex-wrap: wrap;
-    box-shadow: 0 12px 40px rgba(46,134,193,.25);
-    overflow: hidden; position: relative;
-  }
-  .promo-card::before {
-    content: '';
-    position: absolute; right: -30px; top: -30px;
-    width: 160px; height: 160px;
-    background: rgba(255,255,255,.12); border-radius: 50%;
-  }
-  .promo-card::after {
-    content: '';
-    position: absolute; left: 30%; bottom: -20px;
-    width: 80px; height: 80px;
-    background: rgba(255,255,255,.08); border-radius: 50%;
-  }
-  .promo-left { flex: 1; min-width: 200px; }
-  .promo-tag {
-    display: inline-block;
-    background: rgba(255,255,255,.22); color: white;
-    border-radius: 999px; padding: 4px 14px;
-    font-size: .72rem; font-weight: 600; letter-spacing: .15em;
-    text-transform: uppercase; margin-bottom: 8px;
-  }
-  .promo-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; color: white; font-weight: 700; line-height: 1.2;
-  }
-  .promo-subtitle { color: rgba(255,255,255,.85); font-size: .9rem; margin-top: 4px; }
-  .promo-badge {
-    background: white; color: var(--blue-deep);
-    border-radius: 20px; padding: 20px 28px;
-    text-align: center; flex-shrink: 0;
-    box-shadow: 0 6px 20px rgba(0,0,0,.15);
-  }
-  .promo-pct { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1; color: var(--blue-deep); }
-  .promo-off { font-size: .75rem; font-weight: 600; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
-  .promo-products { color: rgba(255,255,255,.75); font-size: .78rem; margin-top: 6px; }
 
   /* ── 7. SECCIONES Y CATÁLOGO ────────────────────────── */
   .catalog-section {
@@ -243,11 +252,6 @@
     transition: transform .38s ease;
   }
   .product-card:hover .card-img img { transform: scale(1.04); }
-  .card-img-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--muted); font-size: .8rem; text-align: center; padding: 20px;
-  }
-  .card-img-placeholder span { font-size: 2.8rem; }
   .card-badge {
     position: absolute; top: 12px; left: 12px;
     background: var(--pink-btn); color: white;
@@ -256,9 +260,6 @@
     text-transform: uppercase;
     box-shadow: 0 3px 10px rgba(224,92,126,.3);
   }
-  .card-badge.natural { background: #5aaa7e; }
-  .card-badge.premium { background: var(--gold); }
-
   .card-body {
     padding: 18px 20px 14px;
     flex: 1; display: flex; flex-direction: column; gap: 8px;
@@ -280,22 +281,6 @@
     font-size: .68rem; letter-spacing: .08em;
     text-transform: uppercase; margin-bottom: 3px;
   }
-  .card-variants { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-  .variant-chip {
-    background: var(--blue-light); color: var(--blue-deep);
-    border-radius: 999px; padding: 3px 10px;
-    font-size: .7rem; font-weight: 500; cursor: pointer;
-    border: 1.5px solid transparent;
-    transition: all .18s;
-  }
-  .variant-chip:hover, .variant-chip.selected {
-    background: var(--blue-mid); color: white;
-    border-color: var(--blue-deep);
-  }
-  .card-variant-note {
-    font-size: .72rem; color: var(--muted); font-style: italic;
-    margin-top: 2px;
-  }
   .card-footer {
     padding: 12px 20px 18px;
     display: flex; align-items: center; justify-content: space-between;
@@ -306,7 +291,6 @@
     font-size: 1.25rem; font-weight: 700;
     color: var(--pink-btn);
   }
-  .card-price small { font-size: .7rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
   .btn-add {
     background: var(--pink-btn); color: white;
     border: none; border-radius: 999px;
@@ -321,45 +305,10 @@
     box-shadow: 0 6px 18px rgba(224,92,126,.4);
   }
 
-  /* ── 9. FAMILY CARD & ACORDIONES ───────────────────── */
-  .family-card .card-body { gap: 10px; }
-  .variants-toggle {
-    background: none; border: 1.5px solid var(--pink-mid);
-    border-radius: 8px; padding: 7px 14px;
-    font-size: .78rem; font-weight: 500; color: var(--muted);
-    cursor: pointer; font-family: 'DM Sans', sans-serif;
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; transition: all .2s;
-    margin-top: 4px;
-  }
-  .variants-toggle:hover { background: var(--pink); color: var(--pink-btn); border-color: var(--pink-btn); }
-  .variants-toggle .arrow { transition: transform .22s; font-size: .7rem; }
-  .variants-toggle.open .arrow { transform: rotate(180deg); }
-  .variants-list {
-    display: none; flex-direction: column; gap: 6px;
-    padding: 8px 0;
-  }
-  .variants-list.open { display: flex; }
-  .variant-row {
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--pink); border-radius: 10px;
-    padding: 8px 12px; gap: 8px;
-  }
-  .variant-row-name { font-size: .8rem; font-weight: 500; color: var(--dark); flex: 1; }
-  .variant-row-price { font-size: .85rem; font-weight: 700; color: var(--pink-btn); white-space: nowrap; }
-  .btn-variant-add {
-    background: var(--pink-btn); color: white;
-    border: none; border-radius: 999px;
-    padding: 4px 12px; font-size: .7rem; font-weight: 600;
-    cursor: pointer; font-family: 'DM Sans', sans-serif;
-    transition: background .18s;
-  }
-  .btn-variant-add:hover { background: #c94a6d; }
-
-  /* ── 10. SECCIÓN INFORMATIVA ───────────────────────── */
+  /* ── 9. SECCIÓN DE PREGUNTAS FRECUENTES (Corregida y estructurada) ── */
   .seccion-informativa {
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 3rem auto 2rem;
     padding: 2rem;
     background-color: #ffffff;
     border-radius: var(--radius);
@@ -373,58 +322,53 @@
     font-family: 'Dancing Script', cursive;
     font-size: 2.2rem;
     color: var(--pink-btn);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     text-align: center;
     border-bottom: 1px solid var(--pink-mid);
     padding-bottom: 0.5rem;
   }
-  .seccion-informativa h3 {
-    font-family: 'DM Sans', sans-serif;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-top: 1rem;
-    margin-bottom: 0.4rem;
-  }
-  .seccion-informativa p {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-  .seccion-informativa article {
-    padding: 0.8rem;
-    border-left: 2px solid var(--pink-mid);
-    margin-bottom: 0.8rem;
-    background: var(--cream);
-    border-radius: 0 8px 8px 0;
-    transition: border-color 0.3s ease;
-  }
-  .seccion-informativa article:hover {
-    border-left-color: var(--pink-btn);
-  }
   .seccion-informativa details {
     background: var(--pink);
-    padding: 0.6rem 0.8rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
     cursor: pointer;
+    border: 1px solid var(--pink-mid);
+    transition: background 0.2s;
+  }
+  .seccion-informativa details[open] {
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(224,92,126,0.1);
   }
   .seccion-informativa summary {
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--pink-btn);
     list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .seccion-informativa summary::-webkit-details-marker {
+    display: none;
   }
   .seccion-informativa summary::before {
-    content: "✦ ";
+    content: "✦";
     font-size: 0.8rem;
+  }
+  .seccion-informativa p {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--pink-mid);
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
   }
   .seccion-informativa strong {
     color: var(--pink-btn);
   }
 
-  /* ── 11. FOOTER, CARRITO Y EXTRAS ──────────────────── */
+  /* ── 10. FOOTER, CARRITO Y EXTRAS ──────────────────── */
   footer {
     position: relative; z-index: 5;
     margin-top: 80px;
@@ -483,39 +427,17 @@
     border: 2px solid white;
   }
 
-  .toast {
-    position: fixed; bottom: 100px; right: 28px; z-index: 200;
-    background: var(--dark); color: white;
-    border-radius: 12px; padding: 12px 20px;
-    font-size: .82rem; font-weight: 500;
-    box-shadow: 0 8px 28px rgba(0,0,0,.3);
-    transform: translateY(20px) scale(.95);
-    opacity: 0; transition: all .3s;
-    pointer-events: none; max-width: 240px;
-  }
-  .toast.show { transform: translateY(0) scale(1); opacity: 1; }
-
-  /* ── 12. ANIMACIONES Y UTILIDADES ──────────────────── */
+  /* ── 11. ANIMACIONES Y RESPONSIVE ──────────────────── */
   @keyframes fadeSlideUp {
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .catalog-section:nth-child(2) { animation-delay: .05s; }
-  .catalog-section:nth-child(3) { animation-delay: .10s; }
-  .catalog-section:nth-child(4) { animation-delay: .15s; }
-  .catalog-section:nth-child(5) { animation-delay: .20s; }
 
-  .hidden { display: none !important; }
-
-  /* ── 13. RESPONSIVE ────────────────────────────────── */
   @media(max-width:640px) {
     .header-inner { padding: 28px 20px 20px; }
     .logo-main { font-size: 2.6rem; }
     nav { padding: 0 16px; }
-    .catalog-section { padding: 0 16px; }
-    .promo-banner { padding: 0 16px; }
-    .promo-card { padding: 24px 20px; }
+    .catalog-section, .info-dropdowns-section { padding: 0 16px; }
     .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-    footer { padding: 36px 20px 24px; }
   }
 </style>
